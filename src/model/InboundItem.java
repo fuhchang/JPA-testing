@@ -21,11 +21,14 @@ public class InboundItem implements Serializable {
 	@Temporal(TemporalType.DATE)
 	private Date expirydate;
 
-	private String itemid;
+	private int itemid;
 
 	private int quantity;
 
-	private String receiptno;
+	//bi-directional many-to-one association to InboundTran
+	@ManyToOne
+	@JoinColumn(name="receiptno")
+	private InboundTran inboundTran;
 
 	public InboundItem() {
 	}
@@ -46,11 +49,11 @@ public class InboundItem implements Serializable {
 		this.expirydate = expirydate;
 	}
 
-	public String getItemid() {
+	public int getItemid() {
 		return this.itemid;
 	}
 
-	public void setItemid(String itemid) {
+	public void setItemid(int itemid) {
 		this.itemid = itemid;
 	}
 
@@ -62,12 +65,12 @@ public class InboundItem implements Serializable {
 		this.quantity = quantity;
 	}
 
-	public String getReceiptno() {
-		return this.receiptno;
+	public InboundTran getInboundTran() {
+		return this.inboundTran;
 	}
 
-	public void setReceiptno(String receiptno) {
-		this.receiptno = receiptno;
+	public void setInboundTran(InboundTran inboundTran) {
+		this.inboundTran = inboundTran;
 	}
 
 }
